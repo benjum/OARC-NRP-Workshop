@@ -26,7 +26,11 @@ diff labs/02-pvc/pod-with-pvc.yaml labs/04-job/job.yaml
 
 ```bash
 kubectl create configmap train-script-$ME --from-file=train.py=ml/train.py
+```
+```bash
 kubectl label configmap train-script-$ME owner=$ME
+```
+```bash
 kubectl apply -f labs/04-job/job.yaml
 ```
 
@@ -34,7 +38,11 @@ kubectl apply -f labs/04-job/job.yaml
 
 ```bash
 kubectl get jobs,pods -l owner=$ME
+```
+```bash
 kubectl logs -f job/ml-job-$ME          # pip install, then the sweep
+```
+```bash
 kubectl get job ml-job-$ME              # COMPLETIONS 1/1 when done
 ```
 
@@ -44,6 +52,8 @@ The Job's Pod has exited, so look through any Pod that mounts the PVC: the Lab 2
 
 ```bash
 kubectl apply -f labs/02-pvc/pod-with-pvc.yaml
+```
+```bash
 kubectl exec ml-pvc-pod-$ME -- cat /data/results/job-run/metrics.json
 ```
 

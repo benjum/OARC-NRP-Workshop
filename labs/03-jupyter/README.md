@@ -13,7 +13,11 @@ permalink: /labs/03-jupyter/
 
 ```bash
 kubectl apply -f labs/03-jupyter/jupyter-pod.yaml
+```
+```bash
 kubectl wait --for=condition=Ready pod/jupyter-$ME --timeout=600s   # first image pull is slow
+```
+```bash
 kubectl logs jupyter-$ME        # copy the http://127.0.0.1:8888/lab?token=... URL
 ```
 

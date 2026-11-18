@@ -13,6 +13,8 @@ permalink: /labs/05-jupyter-ai/
 
 ```bash
 kubectl create secret generic nrp-llm-$ME --from-literal=OPENAI_API_KEY=<YOUR_TOKEN>
+```
+```bash
 kubectl label secret nrp-llm-$ME owner=$ME
 ```
 
@@ -24,7 +26,11 @@ The YAML only *references* the Secret, so the token never appears in a file.
 
 ```bash
 kubectl delete pod jupyter-$ME --ignore-not-found
+```
+```bash
 kubectl apply -f labs/05-jupyter-ai/jupyter-ai-pod.yaml
+```
+```bash
 kubectl logs -f jupyter-ai-$ME     # wait ~2 min for the install, then copy the ?token= URL
 ```
 
@@ -48,6 +54,8 @@ Test the token and endpoint directly:
 
 ```bash
 kubectl cp labs/05-jupyter-ai/test_nrp_llm.py "jupyter-ai-${ME}:/home/jovyan/test_nrp_llm.py"
+```
+```bash
 kubectl exec jupyter-ai-$ME -- python /home/jovyan/test_nrp_llm.py
 ```
 

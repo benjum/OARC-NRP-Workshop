@@ -21,8 +21,14 @@ Ways to move data:
 
 ```bash
 kubectl apply -f labs/02-pvc/pvc.yaml
+```
+```bash
 kubectl get pvc ml-data-$ME            # STATUS Bound (or Pending until a Pod uses it)
+```
+```bash
 kubectl apply -f labs/02-pvc/pod-with-pvc.yaml
+```
+```bash
 kubectl wait --for=condition=Ready pod/ml-pvc-pod-$ME --timeout=300s
 ```
 
@@ -32,10 +38,20 @@ The `volumeMounts` + `volumes` pair in the YAML is how any Pod, Job, or Jupyter 
 
 ```bash
 kubectl exec ml-pvc-pod-$ME -- mkdir -p /data/code
+```
+```bash
 kubectl cp ml/train.py "ml-pvc-pod-${ME}:/data/code/train.py"
+```
+```bash
 kubectl exec -it ml-pvc-pod-$ME -- bash
+```
+```bash
 # inside:
+```
+```bash
 pip install scikit-learn     # into the container, NOT /data
+```
+```bash
 python /data/code/train.py --output-dir /data/results/pvc-run1
 exit
 ```
@@ -44,8 +60,14 @@ exit
 
 ```bash
 kubectl delete pod ml-pvc-pod-$ME
+```
+```bash
 kubectl apply -f labs/02-pvc/pod-with-pvc.yaml
+```
+```bash
 kubectl wait --for=condition=Ready pod/ml-pvc-pod-$ME --timeout=300s
+```
+```bash
 kubectl exec ml-pvc-pod-$ME -- cat /data/results/pvc-run1/metrics.json
 ```
 
