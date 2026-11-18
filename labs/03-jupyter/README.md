@@ -27,6 +27,11 @@ Copy the `http://127.0.0.1:8888/lab?token=...` URL.
 
 ### 2. Port-forward (in a separate terminal; leave it running)
 
+In a separate terminal, you can set your `ME` environment variable again (`# Windows PowerShell: $ME = "jsmith"`)
+```bash
+export ME=jsmith
+```
+Then get access to the Jupyter port on your local machine.
 ```bash
 kubectl port-forward pod/jupyter-$ME 8888:8888
 ```

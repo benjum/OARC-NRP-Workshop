@@ -9,17 +9,25 @@ metadata:
     owner: YOURNAME
 spec:
   restartPolicy: Never
-  securityContext:
-    fsGroup: 100
   containers:
     - name: notebook
       image: quay.io/jupyter/scipy-notebook:latest
+      securityContext:
+        runAsUser: 0                    # start as root just long enough to fix ownership
+      env:
+        - name: CHOWN_EXTRA             # give these folders to jovyan:users at startup
+          value: /home/jovyan/work
+        - name: CHOWN_EXTRA_OPTS
+          value: "-R"                   # recursive, so Lab 2/4 files are included
       command: ["bash", "-c"]
       args:
         - |
           set -euo pipefail
           echo "Installing Jupyter AI (1-2 minutes)..."
-          pip install --quiet "jupyter-ai[jupyternaut]>=3.2"   # into the container, not the PVC
+          # install into the container, not the PVC
+          pip install --quiet --no-cache-dir "jupyter-ai[jupyternaut]>=3.2"
+          # hand /opt/conda back to jovyan's group
+          fix-permissions "${CONDA_DIR}"     
           # Pre-select the model; "openai/" = any OpenAI-compatible endpoint.
           exec start-notebook.py \
             --JupyternautExtension.initial_language_model="openai/${NRP_MODEL}" \

@@ -7,8 +7,6 @@ metadata:
     owner: YOURNAME
 spec:
   restartPolicy: Never
-  securityContext:
-    fsGroup: 100                        # lets the Jupyter Pod (group 100) write here too
   containers:
     - name: python
       image: python:3.12-slim

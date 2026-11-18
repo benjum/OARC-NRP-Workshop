@@ -75,4 +75,8 @@ kubectl exec ml-pod-$ME -- ls /tmp
 
 **Takeaways:** every Pod starts from the clean image. Put software in the **image** and data on a **PVC** (Lab 2). Sleeping is fine in an interactive Pod (6-hour maximum), never in a Job.
 
-**Cleanup:** `kubectl delete pod ml-pod-$ME`
+**Cleanup:** 
+
+```bash
+kubectl delete pod ml-pod-$ME
+```

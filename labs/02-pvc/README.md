@@ -56,6 +56,9 @@ pip install scikit-learn
 ```
 ```bash
 python /data/code/train.py --output-dir /data/results/pvc-run1
+```
+You will be able te see results now under `/data/results/pvc-run1`.  When done, exit.
+```bash
 exit
 ```
 
@@ -84,4 +87,8 @@ kubectl cp "ml-pvc-pod-${ME}:/data/results/pvc-run1" ./results-pvc-run1
 
 **Takeaway:** Pods are disposable compute; the PVC holds your data. **Keep the PVC.** Labs 3 to 5 use it.
 
-**Cleanup:** `kubectl delete pod ml-pvc-pod-$ME`. Delete the PVC only at the end of the workshop.
+**Cleanup:** 
+```bash
+kubectl delete pod ml-pvc-pod-$ME
+```
+Delete the PVC only at the end of the workshop.

@@ -13,8 +13,6 @@ spec:
   template:                             # <- the Pod spec from Lab 2 moves in here
     spec:
       restartPolicy: Never
-      securityContext:
-        fsGroup: 100
       containers:
         - name: train
           image: python:3.12-slim
