@@ -1,0 +1,48 @@
+# Lab 5 - JupyterLab + Jupyter AI (Jupyternaut) using NRP's hosted LLMs.
+# Needs: PVC ml-data-YOURNAME, and a Secret with your NRP LLM token:
+#   kubectl create secret generic nrp-llm-YOURNAME --from-literal=OPENAI_API_KEY=<token>
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jupyter-ai-YOURNAME
+  labels:
+    owner: YOURNAME
+spec:
+  restartPolicy: Never
+  securityContext:
+    fsGroup: 100
+  containers:
+    - name: notebook
+      image: quay.io/jupyter/scipy-notebook:latest
+      command: ["bash", "-c"]
+      args:
+        - |
+          set -euo pipefail
+          echo "Installing Jupyter AI (1-2 minutes)..."
+          pip install --quiet "jupyter-ai[jupyternaut]>=3.2"   # into the container, not the PVC
+          # Pre-select the model; "openai/" = any OpenAI-compatible endpoint.
+          exec start-notebook.py \
+            --JupyternautExtension.initial_language_model="openai/${NRP_MODEL}" \
+            --JupyternautExtension.model_parameters="{\"openai/${NRP_MODEL}\": {\"api_base\": \"${OPENAI_BASE_URL}\"}}"
+      ports:
+        - containerPort: 8888
+      env:
+        - name: NRP_MODEL               # any id listed by the endpoint's /v1/models
+          value: gpt-oss
+        - name: OPENAI_BASE_URL
+          value: https://ellm.nrp-nautilus.io/v1
+        - name: OPENAI_API_KEY          # from the Secret; never paste tokens into YAML
+          valueFrom:
+            secretKeyRef:
+              name: nrp-llm-YOURNAME
+              key: OPENAI_API_KEY
+      resources:
+        requests: {cpu: "2", memory: 4Gi}
+        limits:   {cpu: "2", memory: 4Gi}
+      volumeMounts:
+        - name: data
+          mountPath: /home/jovyan/work
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: ml-data-YOURNAME

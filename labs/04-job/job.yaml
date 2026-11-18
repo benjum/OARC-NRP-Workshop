@@ -1,0 +1,45 @@
+# Lab 4 - the Lab 2 ML run as a batch Job (Kubernetes' version of sbatch).
+# The container does the work and EXITS. Never sleep in a Job: on NRP that gets you banned.
+# Needs: PVC ml-data-YOURNAME and ConfigMap train-script-YOURNAME (see README).
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ml-job-YOURNAME
+  labels:
+    owner: YOURNAME
+spec:
+  backoffLimit: 2                       # retry a failed Pod up to 2 more times
+  ttlSecondsAfterFinished: 3600         # auto-delete the Job 1 h after it finishes
+  template:                             # <- the Pod spec from Lab 2 moves in here
+    spec:
+      restartPolicy: Never
+      securityContext:
+        fsGroup: 100
+      containers:
+        - name: train
+          image: python:3.12-slim
+          command: ["bash", "-c"]
+          args:
+            - |
+              set -euo pipefail
+              # Demo shortcut; for real work, bake dependencies into your image.
+              pip install --quiet --root-user-action=ignore scikit-learn
+              python /scripts/train.py --output-dir /data/results/job-run
+          env:
+            - name: N_JOBS
+              value: "1"
+          resources:
+            requests: {cpu: "1", memory: 2Gi}
+            limits:   {cpu: "1", memory: 2Gi}
+          volumeMounts:
+            - name: script
+              mountPath: /scripts       # train.py from the ConfigMap
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: script
+          configMap:
+            name: train-script-YOURNAME
+        - name: data
+          persistentVolumeClaim:
+            claimName: ml-data-YOURNAME

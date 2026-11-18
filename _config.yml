@@ -1,0 +1,34 @@
+# GitHub Pages site config (Jekyll + the Just the Docs theme).
+# Edit the two OWNER/REPO lines below, commit, then turn on Pages:
+#   Settings -> Pages -> Source: "Deploy from a branch" -> main, / (root)
+
+title: Running Workloads on NRP
+description: Hands-on Kubernetes labs for researchers on the National Research Platform
+
+remote_theme: just-the-docs/just-the-docs@v0.12.0   # pinned so theme updates can't break the site
+plugins:
+  - jekyll-remote-theme
+  - jekyll-relative-links      # turns links to labs/.../README.md into page links
+
+color_scheme: light
+search_enabled: true
+enable_copy_code_button: true  # "copy" button on every command block
+heading_anchors: true
+
+aux_links:                     # top-right link
+  "View on GitHub":
+    - "https://github.com/OWNER/REPO"
+aux_links_new_tab: true
+
+footer_content: "Workshop materials for the National Research Platform (NRP)."
+
+relative_links:
+  enabled: true
+
+# Kept in the repo but not published as pages
+exclude:
+  - README.md
+  - INSTRUCTOR_NOTES.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

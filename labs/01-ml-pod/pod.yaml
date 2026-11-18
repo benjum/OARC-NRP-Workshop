@@ -1,0 +1,24 @@
+# Lab 1 - interactive Pod for running a small Python script. No storage:
+# anything installed or written inside disappears with the Pod.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ml-pod-YOURNAME                 # unique in the shared namespace
+  labels:
+    owner: YOURNAME                     # for cleanup: kubectl delete ... -l owner=YOURNAME
+spec:
+  restartPolicy: Never
+  containers:
+    - name: python
+      image: python:3.12-slim           # small public image: Python + pip, no scikit-learn
+      # A bare Pod is "interactive" on NRP (6 h max). Sleeping keeps it alive so we
+      # can exec in; 2 h means a forgotten Pod cleans itself up. Never sleep in a Job.
+      command: ["sleep", "7200"]
+      env:
+        - name: N_JOBS                  # cores train.py uses; match the CPU request
+          value: "1"
+      resources:
+        # requests: reserved for you, used for placement. limits: hard ceiling.
+        # NRP policy: limits within 20% of requests. Equal is simplest.
+        requests: {cpu: "1", memory: 2Gi}
+        limits:   {cpu: "1", memory: 2Gi}

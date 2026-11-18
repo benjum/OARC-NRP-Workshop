@@ -1,0 +1,30 @@
+# Lab 3 - personal JupyterLab in a Pod, reached with kubectl port-forward.
+# Mounts the Lab 2 PVC at ~/work (create the PVC first, or this Pod stays Pending).
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jupyter-YOURNAME
+  labels:
+    owner: YOURNAME
+spec:
+  restartPolicy: Never
+  securityContext:
+    fsGroup: 100                        # jovyan's group: makes ~/work writable
+  containers:
+    - name: notebook
+      # JupyterLab + pandas/matplotlib/scikit-learn. 1-2 GB, so the first pull
+      # on a node takes a few minutes. Pin a dated tag for real projects.
+      image: quay.io/jupyter/scipy-notebook:latest
+      # Default command starts JupyterLab on 8888 and prints a login token to the logs.
+      ports:
+        - containerPort: 8888
+      resources:
+        requests: {cpu: "2", memory: 4Gi}
+        limits:   {cpu: "2", memory: 4Gi}
+      volumeMounts:
+        - name: data
+          mountPath: /home/jovyan/work
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: ml-data-YOURNAME

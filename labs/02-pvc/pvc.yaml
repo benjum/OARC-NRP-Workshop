@@ -1,0 +1,16 @@
+# Lab 2 - a PersistentVolumeClaim: storage that outlives your Pods.
+# rook-cephfs-central = CephFS, ReadWriteMany (several Pods can mount it at once,
+# which Labs 3-5 rely on). Check `kubectl get storageclass` the day before.
+# NRP rule: never install conda/pip packages onto CephFS. Data and results only.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ml-data-YOURNAME
+  labels:
+    owner: YOURNAME
+spec:
+  storageClassName: rook-cephfs-central
+  accessModes: [ReadWriteMany]
+  resources:
+    requests:
+      storage: 1Gi

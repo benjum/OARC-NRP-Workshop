@@ -1,0 +1,28 @@
+# Lab 2 - the Lab 1 Pod plus the PVC mounted at /data.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ml-pvc-pod-YOURNAME
+  labels:
+    owner: YOURNAME
+spec:
+  restartPolicy: Never
+  securityContext:
+    fsGroup: 100                        # lets the Jupyter Pod (group 100) write here too
+  containers:
+    - name: python
+      image: python:3.12-slim
+      command: ["sleep", "7200"]
+      env:
+        - name: N_JOBS
+          value: "1"
+      resources:
+        requests: {cpu: "1", memory: 2Gi}
+        limits:   {cpu: "1", memory: 2Gi}
+      volumeMounts:
+        - name: data                    # matches spec.volumes[].name below
+          mountPath: /data              # where it appears inside the container
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: ml-data-YOURNAME
