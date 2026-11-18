@@ -1,14 +1,14 @@
-# Running Workloads on the National Research Platform (NRP)
+# UCLA OARC Workshop: Computing on the National Research Platform (NRP)
 
 Hands-on Kubernetes labs for researchers: interactive Pods, persistent storage, Jupyter, batch Jobs, and LLMs on NRP.
 
-**📖 Workshop site: https://OWNER.github.io/REPO/**
+**📖 Workshop site: https://benjum.github.io/OARC-NRP-Workshop/**
 
 ## Quick start
 
 ```bash
-git clone https://github.com/OWNER/REPO.git
-cd REPO
+git clone https://github.com/benjum/OARC-NRP-Workshop.git
+cd OARC-NRP-Workshop
 ./personalize.sh <yourname>      # Windows: .\personalize.ps1 <yourname>
 ```
 

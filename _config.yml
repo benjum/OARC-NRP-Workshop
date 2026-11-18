@@ -1,8 +1,6 @@
 # GitHub Pages site config (Jekyll + the Just the Docs theme).
-# Edit the two OWNER/REPO lines below, commit, then turn on Pages:
-#   Settings -> Pages -> Source: "Deploy from a branch" -> main, / (root)
 
-title: Running Workloads on NRP
+title: UCLA OARC Workshop: Computing on the National Research Platform
 description: Hands-on Kubernetes labs for researchers on the National Research Platform
 
 remote_theme: just-the-docs/just-the-docs@v0.12.0   # pinned so theme updates can't break the site
@@ -17,7 +15,7 @@ heading_anchors: true
 
 aux_links:                     # top-right link
   "View on GitHub":
-    - "https://github.com/OWNER/REPO"
+    - "https://github.com/benjum/OARC-NRP-Workshop"
 aux_links_new_tab: true
 
 footer_content: "Workshop materials for the National Research Platform (NRP)."
