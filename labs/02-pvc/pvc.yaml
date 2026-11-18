@@ -5,9 +5,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ml-data-bwinjum
+  name: ml-data-YOURNAME
   labels:
-    owner: bwinjum
+    owner: YOURNAME
 spec:
   storageClassName: rook-cephfs-central
   accessModes: [ReadWriteMany]

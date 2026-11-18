@@ -1,12 +1,12 @@
 # Lab 5 - JupyterLab + Jupyter AI (Jupyternaut) using NRP's hosted LLMs.
-# Needs: PVC ml-data-bwinjum, and a Secret with your NRP LLM token:
-#   kubectl create secret generic nrp-llm-bwinjum --from-literal=OPENAI_API_KEY=<token>
+# Needs: PVC ml-data-YOURNAME, and a Secret with your NRP LLM token:
+#   kubectl create secret generic nrp-llm-YOURNAME --from-literal=OPENAI_API_KEY=<token>
 apiVersion: v1
 kind: Pod
 metadata:
-  name: jupyter-ai-bwinjum
+  name: jupyter-ai-YOURNAME
   labels:
-    owner: bwinjum
+    owner: YOURNAME
 spec:
   restartPolicy: Never
   securityContext:
@@ -34,7 +34,7 @@ spec:
         - name: OPENAI_API_KEY          # from the Secret; never paste tokens into YAML
           valueFrom:
             secretKeyRef:
-              name: nrp-llm-bwinjum
+              name: nrp-llm-YOURNAME
               key: OPENAI_API_KEY
       resources:
         requests: {cpu: "2", memory: 4Gi}
@@ -45,4 +45,4 @@ spec:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: ml-data-bwinjum
+        claimName: ml-data-YOURNAME

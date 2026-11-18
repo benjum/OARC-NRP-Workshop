@@ -3,9 +3,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ml-pod-bwinjum                 # unique in the shared namespace
+  name: ml-pod-YOURNAME                 # unique in the shared namespace
   labels:
-    owner: bwinjum                     # for cleanup: kubectl delete ... -l owner=bwinjum
+    owner: YOURNAME                     # for cleanup: kubectl delete ... -l owner=YOURNAME
 spec:
   restartPolicy: Never
   containers:
