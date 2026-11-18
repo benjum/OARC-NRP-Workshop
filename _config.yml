@@ -1,6 +1,6 @@
 # GitHub Pages site config (Jekyll + the Just the Docs theme).
 
-title: UCLA OARC Workshop for Computing on NRP
+title: NRP Workshop
 description: Hands-on Kubernetes labs for researchers on the National Research Platform
 
 remote_theme: just-the-docs/just-the-docs@v0.12.0   # pinned so theme updates can't break the site
