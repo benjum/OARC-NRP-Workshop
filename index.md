@@ -36,11 +36,13 @@ Run everything from the repo folder. Everyone shares one namespace, so first giv
 ```bash
 kubectl config set contexts.nautilus.namespace <WORKSHOP_NAMESPACE>
 ```
+The following will personalize an OWNER attribute to your resources' config files. (# Windows PowerShell: .\personalize.ps1 jsmith)
 ```bash
-./personalize.sh jsmith        # Windows PowerShell: .\personalize.ps1 jsmith
+./personalize.sh jsmith
 ```
+And set an environment variable for later commands (# Windows PowerShell: $ME = "jsmith"
 ```bash
-export ME=jsmith               # Windows PowerShell: $ME = "jsmith"
+export ME=jsmith
 ```
 
 The lab commands use `$ME`. Set it again in any new terminal. On Windows, WSL or Git Bash avoids PowerShell quoting quirks.
@@ -67,18 +69,18 @@ The lab commands use `$ME`. Set it again in any new terminal. On Windows, WSL or
 
 ## Debugging loop
 
+Look for pods status (Pending / ImagePullBackOff / CrashLoopBackOff / OOMKilled)
 ```bash
-kubectl get pods                  # Pending / ImagePullBackOff / CrashLoopBackOff / OOMKilled ?
+kubectl get pods 
 ```
-Look for Pending / ImagePullBackOff / CrashLoopBackOff / OOMKilled
+Look for events (scheduling, image pull, volumes, secrets)
 ```bash
 kubectl describe pod <name>
 ```
-Look for events: scheduling, image pull, volumes, secrets
+Look for your program's output
 ```bash
 kubectl logs <name> [--previous]
 ```
-Look for your program's output
 
 ## Cleanup (end of workshop)
 
