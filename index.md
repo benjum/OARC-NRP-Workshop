@@ -20,6 +20,8 @@ Labs 2 to 5 share one PVC, so do Lab 2 first.
 
 ```bash
 git clone {{ site.github.clone_url }}
+```
+```bash
 cd {{ site.github.repository_name }}
 ```
 
@@ -33,7 +35,11 @@ Run everything from the repo folder. Everyone shares one namespace, so first giv
 
 ```bash
 kubectl config set contexts.nautilus.namespace <WORKSHOP_NAMESPACE>
+```
+```bash
 ./personalize.sh jsmith        # Windows PowerShell: .\personalize.ps1 jsmith
+```
+```bash
 export ME=jsmith               # Windows PowerShell: $ME = "jsmith"
 ```
 
@@ -63,9 +69,16 @@ The lab commands use `$ME`. Set it again in any new terminal. On Windows, WSL or
 
 ```bash
 kubectl get pods                  # Pending / ImagePullBackOff / CrashLoopBackOff / OOMKilled ?
-kubectl describe pod <name>       # Events: scheduling, image pull, volumes, secrets
-kubectl logs <name> [--previous]  # your program's output
 ```
+Look for Pending / ImagePullBackOff / CrashLoopBackOff / OOMKilled
+```bash
+kubectl describe pod <name>
+```
+Look for events: scheduling, image pull, volumes, secrets
+```bash
+kubectl logs <name> [--previous]
+```
+Look for your program's output
 
 ## Cleanup (end of workshop)
 
@@ -73,5 +86,8 @@ This **permanently deletes your PVC data**, so copy out anything you want to kee
 
 ```bash
 kubectl delete pods,jobs,configmaps,secrets,pvc -l owner=$ME
-kubectl get pods,jobs,pvc -l owner=$ME          # should say "No resources found"
 ```
+```bash
+kubectl get pods,jobs,pvc -l owner=$ME
+```
+You should see "No resources found"
