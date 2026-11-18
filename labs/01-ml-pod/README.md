@@ -44,6 +44,7 @@ Try to run the ML script (fails: scikit-learn isn't in this image)
 ```bash
 python /tmp/train.py
 ```
+So, we install scikit-learn in the container.
 ```bash
 pip install scikit-learn
 ```
