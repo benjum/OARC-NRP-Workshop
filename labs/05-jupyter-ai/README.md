@@ -4,7 +4,7 @@ nav_order: 6
 permalink: /labs/05-jupyter-ai/
 ---
 
-# Lab 5: Jupyter AI (Jupyternaut) with NRP's hosted LLMs (~10 min)
+# Lab 5: Jupyter AI (Jupyternaut) with NRP's hosted LLMs
 
 **Goal:** run JupyterLab with Jupyternaut connected to NRP's OpenAI-compatible endpoint (`https://ellm.nrp-nautilus.io/v1`), with your token stored as a Kubernetes **Secret**.
 **Needs:** the PVC from Lab 2, and an **NRP LLM token** from the NRP portal. Your account must be in an LLM-enabled group.

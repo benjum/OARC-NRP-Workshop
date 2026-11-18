@@ -4,7 +4,7 @@ nav_order: 5
 permalink: /labs/04-job/
 ---
 
-# Lab 4: Convert the Pod into a batch Job (~8 min, or instructor demo)
+# Lab 4: Convert the Pod into a batch Job
 
 **Goal:** run the Lab 2 ML work unattended as a **Job**, the Kubernetes version of `sbatch`.
 

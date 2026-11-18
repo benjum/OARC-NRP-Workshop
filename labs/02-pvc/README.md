@@ -1,10 +1,10 @@
-o--
+---
 title: "Lab 2: Results on a PVC"
 nav_order: 3
 permalink: /labs/02-pvc/
 ---
 
-# Lab 2: Keep ML results on a PersistentVolumeClaim (~12 min)
+# Lab 2: Keep ML results on a PersistentVolumeClaim
 
 **Goal:** write results to a PVC, delete the Pod, and recover the results from a new Pod and on your laptop.
 **Slurm analogy:** the PVC is your project directory. You **claim** it once and **mount** it into each Pod.

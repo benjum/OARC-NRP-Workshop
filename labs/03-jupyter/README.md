@@ -4,7 +4,7 @@ nav_order: 4
 permalink: /labs/03-jupyter/
 ---
 
-# Lab 3: JupyterLab in a Pod with port-forwarding (~10 min)
+# Lab 3: JupyterLab in a Pod with port-forwarding
 
 **Goal:** run your own JupyterLab on NRP, open it in your laptop's browser, and analyze the Lab 2 results stored on the PVC.
 **Needs:** the PVC from Lab 2. Without it, this Pod stays `Pending`.
