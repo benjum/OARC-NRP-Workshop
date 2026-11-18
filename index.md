@@ -4,10 +4,10 @@ nav_order: 1
 permalink: /
 ---
 
-# Running Workloads on the National Research Platform (NRP): Hands-on Labs
+# Computing on the National Research Platform (NRP): Hands-on Labs
 
 | Lab | What you do | Kubernetes ideas |
-|---|---|---|---|
+|---|---|---|
 | [1. ML script in a Pod](labs/01-ml-pod/README.md) | Run `ml/train.py` in an interactive Pod | Pod, image, requests and limits, `apply`/`get`/`describe`/`exec` |
 | [2. Results on a PVC](labs/02-pvc/README.md) | Save results, delete the Pod, recover them | PersistentVolumeClaim, `kubectl cp` |
 | [3. Jupyter in a Pod](labs/03-jupyter/README.md) | Analyze the results in JupyterLab | `port-forward`, `logs`, a PVC shared by two Pods |
@@ -34,13 +34,13 @@ You need NRP access to the workshop namespace, `kubectl` with the NRP config, an
 Run everything from the repo folder. Everyone shares one namespace, so first give your resources unique names:
 
 ```bash
-kubectl config set contexts.nautilus.namespace <WORKSHOP_NAMESPACE>
+kubectl config set contexts.nautilus.namespace ucla-oarc-nrp-workshop
 ```
-The following will personalize an OWNER attribute to your resources' config files. (# Windows PowerShell: .\personalize.ps1 jsmith)
+The following will personalize an OWNER attribute to your resources' config files. (`# Windows PowerShell: .\personalize.ps1 jsmith`)
 ```bash
 ./personalize.sh jsmith
 ```
-And set an environment variable for later commands (# Windows PowerShell: $ME = "jsmith"
+And set an environment variable for later commands (`# Windows PowerShell: $ME = "jsmith"`)
 ```bash
 export ME=jsmith
 ```

@@ -7,7 +7,8 @@ permalink: /labs/05-jupyter-ai/
 # Lab 5: Jupyter AI (Jupyternaut) with NRP's hosted LLMs
 
 **Goal:** run JupyterLab with Jupyternaut connected to NRP's OpenAI-compatible endpoint (`https://ellm.nrp-nautilus.io/v1`), with your token stored as a Kubernetes **Secret**.
-**Needs:** the PVC from Lab 2, and an **NRP LLM token** from the NRP portal. Your account must be in an LLM-enabled group.
+
+**Needs:** the PVC from Lab 2, and an **NRP LLM token** from the NRP portal. Your account must be in an LLM-enabled group (which we set up for you here with `ucla-oarc-nrp-workshop`).
 
 ### 1. Store your token as a Secret
 
@@ -30,8 +31,9 @@ kubectl delete pod jupyter-$ME --ignore-not-found
 ```bash
 kubectl apply -f labs/05-jupyter-ai/jupyter-ai-pod.yaml
 ```
+This will likely need a few minutes for the install. Then copy the ?token= URL.
 ```bash
-kubectl logs -f jupyter-ai-$ME     # wait ~2 min for the install, then copy the ?token= URL
+kubectl logs -f jupyter-ai-$ME
 ```
 
 ### 3. Port-forward and chat

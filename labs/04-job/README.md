@@ -39,11 +39,13 @@ kubectl apply -f labs/04-job/job.yaml
 ```bash
 kubectl get jobs,pods -l owner=$ME
 ```
+We can look at job logs to see pip install and then the sweep.
 ```bash
-kubectl logs -f job/ml-job-$ME          # pip install, then the sweep
+kubectl logs -f job/ml-job-$ME          
 ```
+The `get jobs` will show `COMPLETIONS 1/1` when done
 ```bash
-kubectl get job ml-job-$ME              # COMPLETIONS 1/1 when done
+kubectl get job ml-job-$ME              
 ```
 
 ### 3. Check the results on the PVC

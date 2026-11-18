@@ -7,6 +7,7 @@ permalink: /labs/01-ml-pod/
 # Lab 1: Run a Python ML script in a Pod
 
 **Goal:** start a Pod, run `ml/train.py` inside it, and see that everything you did inside disappears when the Pod is deleted.
+
 **Slurm analogy:** `salloc` + an interactive shell, except the software comes from a container image.
 
 ### 1. Create the Pod and watch it start

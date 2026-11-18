@@ -7,7 +7,10 @@ permalink: /labs/02-pvc/
 # Lab 2: Keep ML results on a PersistentVolumeClaim
 
 **Goal:** write results to a PVC, delete the Pod, and recover the results from a new Pod and on your laptop.
-**Slurm analogy:** the PVC is your project directory. You **claim** it once and **mount** it into each Pod.
+
+**Slurm analogy:** the PVC is your project directory. 
+
+You **claim** it once and **mount** it into each Pod.
 
 Ways to move data:
 - `kubectl cp` for small files to and from your laptop.
@@ -22,9 +25,11 @@ Ways to move data:
 ```bash
 kubectl apply -f labs/02-pvc/pvc.yaml
 ```
+Look for its STATUS: Bound (or Pending until a Pod uses it)
 ```bash
-kubectl get pvc ml-data-$ME            # STATUS Bound (or Pending until a Pod uses it)
+kubectl get pvc ml-data-$ME            
 ```
+Then create pod that connects with the PVC.
 ```bash
 kubectl apply -f labs/02-pvc/pod-with-pvc.yaml
 ```
@@ -45,11 +50,9 @@ kubectl cp ml/train.py "ml-pvc-pod-${ME}:/data/code/train.py"
 ```bash
 kubectl exec -it ml-pvc-pod-$ME -- bash
 ```
+Now with shell in container, re-do the scikit-learn install into the **container's** storage and not into `/data` as we don't want to pip install to the new volume.
 ```bash
-# inside:
-```
-```bash
-pip install scikit-learn     # into the container, NOT /data
+pip install scikit-learn
 ```
 ```bash
 python /data/code/train.py --output-dir /data/results/pvc-run1

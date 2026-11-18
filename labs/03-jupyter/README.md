@@ -7,6 +7,7 @@ permalink: /labs/03-jupyter/
 # Lab 3: JupyterLab in a Pod with port-forwarding
 
 **Goal:** run your own JupyterLab on NRP, open it in your laptop's browser, and analyze the Lab 2 results stored on the PVC.
+
 **Needs:** the PVC from Lab 2. Without it, this Pod stays `Pending`.
 
 ### 1. Start Jupyter and get the login token
@@ -14,12 +15,15 @@ permalink: /labs/03-jupyter/
 ```bash
 kubectl apply -f labs/03-jupyter/jupyter-pod.yaml
 ```
+This pull may be slower; it is pulling a different image for Jupyter.
 ```bash
-kubectl wait --for=condition=Ready pod/jupyter-$ME --timeout=600s   # first image pull is slow
+kubectl wait --for=condition=Ready pod/jupyter-$ME --timeout=600s   
 ```
+We can look for the Jupyter token in the logs
 ```bash
-kubectl logs jupyter-$ME        # copy the http://127.0.0.1:8888/lab?token=... URL
+kubectl logs jupyter-$ME        
 ```
+Copy the `http://127.0.0.1:8888/lab?token=...` URL.
 
 ### 2. Port-forward (in a separate terminal; leave it running)
 
