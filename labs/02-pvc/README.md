@@ -1,4 +1,4 @@
----
+o--
 title: "Lab 2: Results on a PVC"
 nav_order: 3
 permalink: /labs/02-pvc/
@@ -35,7 +35,7 @@ kubectl exec ml-pvc-pod-$ME -- mkdir -p /data/code
 kubectl cp ml/train.py "ml-pvc-pod-${ME}:/data/code/train.py"
 kubectl exec -it ml-pvc-pod-$ME -- bash
 # inside:
-pip install --root-user-action=ignore scikit-learn     # into the container, NOT /data
+pip install scikit-learn     # into the container, NOT /data
 python /data/code/train.py --output-dir /data/results/pvc-run1
 exit
 ```

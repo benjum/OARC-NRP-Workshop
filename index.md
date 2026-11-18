@@ -6,15 +6,15 @@ permalink: /
 
 # Running Workloads on the National Research Platform (NRP): Hands-on Labs
 
-| Lab | Time | What you do | Kubernetes ideas |
+| Lab | What you do | Kubernetes ideas |
 |---|---|---|---|
-| [1. ML script in a Pod](labs/01-ml-pod/README.md) | 10 min | Run `ml/train.py` in an interactive Pod | Pod, image, requests and limits, `apply`/`get`/`describe`/`exec` |
-| [2. Results on a PVC](labs/02-pvc/README.md) | 12 min | Save results, delete the Pod, recover them | PersistentVolumeClaim, `kubectl cp` |
-| [3. Jupyter in a Pod](labs/03-jupyter/README.md) | 10 min | Analyze the results in JupyterLab | `port-forward`, `logs`, a PVC shared by two Pods |
-| [4. Pod → Job](labs/04-job/README.md) | 8 min | Run the same work unattended | Job, ConfigMap |
-| [5. Jupyter AI + NRP LLMs](labs/05-jupyter-ai/README.md) | 10 min | Chat with Jupyternaut backed by NRP models | Secret, environment variables |
+| [1. ML script in a Pod](labs/01-ml-pod/README.md) | Run `ml/train.py` in an interactive Pod | Pod, image, requests and limits, `apply`/`get`/`describe`/`exec` |
+| [2. Results on a PVC](labs/02-pvc/README.md) | Save results, delete the Pod, recover them | PersistentVolumeClaim, `kubectl cp` |
+| [3. Jupyter in a Pod](labs/03-jupyter/README.md) | Analyze the results in JupyterLab | `port-forward`, `logs`, a PVC shared by two Pods |
+| [4. Pod → Job](labs/04-job/README.md) | Run the same work unattended | Job, ConfigMap |
+| [5. Jupyter AI + NRP LLMs](labs/05-jupyter-ai/README.md) | Chat with Jupyternaut backed by NRP models | Secret, environment variables |
 
-About 50 minutes of hands-on time. Labs 2 to 5 share one PVC, so do Lab 2 first. If you're running behind, do Lab 4 as an instructor demo.
+Labs 2 to 5 share one PVC, so do Lab 2 first.
 
 ## Get the materials
 

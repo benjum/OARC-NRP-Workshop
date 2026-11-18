@@ -23,7 +23,7 @@ spec:
             - |
               set -euo pipefail
               # Demo shortcut; for real work, bake dependencies into your image.
-              pip install --quiet --root-user-action=ignore scikit-learn
+              pip install --quiet scikit-learn
               python /scripts/train.py --output-dir /data/results/job-run
           env:
             - name: N_JOBS

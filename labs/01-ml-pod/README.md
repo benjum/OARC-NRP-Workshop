@@ -13,8 +13,14 @@ permalink: /labs/01-ml-pod/
 
 ```bash
 kubectl apply -f labs/01-ml-pod/pod.yaml
+```
+```bash
 kubectl get pods -w                    # Pending -> ContainerCreating -> Running (Ctrl-C to stop)
+```
+```bash
 kubectl get pod ml-pod-$ME -o wide     # NODE = which machine and institution you landed on
+```
+```bash
 kubectl describe pod ml-pod-$ME        # Events at the bottom explain any waiting
 ```
 
@@ -24,6 +30,8 @@ The scheduler places the Pod on any node with the **requested** 1 CPU and 2 GiB 
 
 ```bash
 kubectl cp ml/train.py "ml-pod-${ME}:/tmp/train.py"
+```
+```bash
 kubectl exec -it ml-pod-$ME -- bash
 ```
 
@@ -31,8 +39,14 @@ kubectl exec -it ml-pod-$ME -- bash
 
 ```bash
 python /tmp/train.py               # fails: scikit-learn isn't in this image
-pip install --root-user-action=ignore scikit-learn
+```
+```bash
+pip install scikit-learn
+```
+```bash
 python /tmp/train.py               # works and writes ./results
+```
+```bash
 exit
 ```
 
@@ -40,8 +54,14 @@ exit
 
 ```bash
 kubectl delete pod ml-pod-$ME
+```
+```bash
 kubectl apply -f labs/01-ml-pod/pod.yaml
+```
+```bash
 kubectl wait --for=condition=Ready pod/ml-pod-$ME --timeout=300s
+```
+```bash
 kubectl exec ml-pod-$ME -- ls /tmp          # train.py, results, and scikit-learn are all gone
 ```
 
