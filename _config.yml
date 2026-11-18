@@ -1,6 +1,6 @@
 # GitHub Pages site config (Jekyll + the Just the Docs theme).
 
-title: UCLA OARC Workshop for Computing on the National Research Platform
+title: UCLA OARC Workshop for Computing on NRP
 description: Hands-on Kubernetes labs for researchers on the National Research Platform
 
 remote_theme: just-the-docs/just-the-docs@v0.12.0   # pinned so theme updates can't break the site
@@ -18,7 +18,7 @@ aux_links:                     # top-right link
     - "https://github.com/benjum/OARC-NRP-Workshop"
 aux_links_new_tab: true
 
-footer_content: "Workshop materials for the National Research Platform (NRP)."
+footer_content: "UCLA OARC Workshop materials."
 
 relative_links:
   enabled: true

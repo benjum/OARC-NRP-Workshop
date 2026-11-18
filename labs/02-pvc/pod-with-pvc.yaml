@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ml-pvc-pod-YOURNAME
+  name: ml-pvc-pod-bwinjum
   labels:
-    owner: YOURNAME
+    owner: bwinjum
 spec:
   restartPolicy: Never
   securityContext:
@@ -25,4 +25,4 @@ spec:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: ml-data-YOURNAME
+        claimName: ml-data-bwinjum

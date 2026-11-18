@@ -3,9 +3,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: jupyter-YOURNAME
+  name: jupyter-bwinjum
   labels:
-    owner: YOURNAME
+    owner: bwinjum
 spec:
   restartPolicy: Never
   securityContext:
@@ -27,4 +27,4 @@ spec:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: ml-data-YOURNAME
+        claimName: ml-data-bwinjum

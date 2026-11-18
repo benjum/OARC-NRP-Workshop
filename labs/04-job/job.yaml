@@ -1,12 +1,12 @@
 # Lab 4 - the Lab 2 ML run as a batch Job (Kubernetes' version of sbatch).
 # The container does the work and EXITS. Never sleep in a Job: on NRP that gets you banned.
-# Needs: PVC ml-data-YOURNAME and ConfigMap train-script-YOURNAME (see README).
+# Needs: PVC ml-data-bwinjum and ConfigMap train-script-bwinjum (see README).
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ml-job-YOURNAME
+  name: ml-job-bwinjum
   labels:
-    owner: YOURNAME
+    owner: bwinjum
 spec:
   backoffLimit: 2                       # retry a failed Pod up to 2 more times
   ttlSecondsAfterFinished: 3600         # auto-delete the Job 1 h after it finishes
@@ -39,7 +39,7 @@ spec:
       volumes:
         - name: script
           configMap:
-            name: train-script-YOURNAME
+            name: train-script-bwinjum
         - name: data
           persistentVolumeClaim:
-            claimName: ml-data-YOURNAME
+            claimName: ml-data-bwinjum
