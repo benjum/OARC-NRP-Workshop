@@ -88,6 +88,8 @@ kubectl cp "ml-pvc-pod-${ME}:/data/results/pvc-run1" ./results-pvc-run1
 **Takeaway:** Pods are disposable compute; the PVC holds your data. **Keep the PVC.** Labs 3 to 5 use it.
 
 **Cleanup:** 
+
+It may be useful to leave this running for the other labs, but to clean up the pod, you would execute:
 ```bash
 kubectl delete pod ml-pvc-pod-$ME
 ```

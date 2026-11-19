@@ -43,10 +43,11 @@ kubectl port-forward pod/jupyter-ai-$ME 8888:8888
 ```
 
 1. Open the URL from step 2.
-2. Open the Jupyter AI chat from the left sidebar.
-3. The model is already set to `openai/gpt-oss`. You can check this in **Settings → Jupyternaut Settings**.
-4. Mention **@Jupyternaut** in your message, for example:
-   `@Jupyternaut write a cell that plots work/results/pvc-run1/sweep.csv`
+2. Open the `work` folder
+3. Open a new notebook and save it (e.g. as `analysis.ipynb`)
+4. Open the Jupyter AI chat from the left sidebar.
+5. The model is already set to `openai/gpt-oss`. You can check this in **Settings → Jupyternaut Settings**.
+6. Mention **@Jupyternaut** in your message, for example: `@Jupyternaut write a cell that plots work/results/pvc-run1/sweep.csv`
 
 Jupyternaut is an agent: it can edit files and notebooks in this Pod, so review its changes.
 
@@ -68,4 +69,10 @@ kubectl exec jupyter-ai-$ME -- python /home/jovyan/test_nrp_llm.py
 | `403` | Account not LLM-enabled. Ask your namespace admin or NRP Matrix support |
 | Model not found | Pick an ID from the test script's list and set `NRP_MODEL` in the YAML |
 
-**Cleanup:** `kubectl delete pod jupyter-ai-$ME; kubectl delete secret nrp-llm-$ME`
+**Cleanup:** 
+```bash
+kubectl delete pod jupyter-ai-$ME
+```
+```bash
+kubectl delete secret nrp-llm-$ME
+```

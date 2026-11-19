@@ -61,4 +61,10 @@ kubectl exec ml-pvc-pod-$ME -- cat /data/results/job-run/metrics.json
 
 To run it again, delete and re-apply the Job; Jobs can't be edited in place. Finished Jobs delete themselves after an hour, but the results on the PVC stay.
 
-**Cleanup:** `kubectl delete job ml-job-$ME; kubectl delete configmap train-script-$ME`
+**Cleanup:** 
+```bash
+kubectl delete job ml-job-$ME
+```
+```bash
+kubectl delete configmap train-script-$ME
+```

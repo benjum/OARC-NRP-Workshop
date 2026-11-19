@@ -19,15 +19,13 @@ spec:
           value: /home/jovyan/work
         - name: CHOWN_EXTRA_OPTS
           value: "-R"                   # recursive, so Lab 2/4 files are included
-      command: ["bash", "-c"]
+      command: ["tini", "-g", "--", "start.sh", "bash", "-c"]
       args:
         - |
           set -euo pipefail
           echo "Installing Jupyter AI (1-2 minutes)..."
           # install into the container, not the PVC
           pip install --quiet --no-cache-dir "jupyter-ai[jupyternaut]>=3.2"
-          # hand /opt/conda back to jovyan's group
-          fix-permissions "${CONDA_DIR}"     
           # Pre-select the model; "openai/" = any OpenAI-compatible endpoint.
           exec start-notebook.py \
             --JupyternautExtension.initial_language_model="openai/${NRP_MODEL}" \
